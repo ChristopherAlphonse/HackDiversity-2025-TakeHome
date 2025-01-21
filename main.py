@@ -16,3 +16,10 @@ def start_session(first_name, last_name):
     response.raise_for_status()
     return response.json().get("session_id")
     # expected return of "session_id": "uuid string"
+
+
+def fetch_routes(session_id, endpoint):
+    headers = {"Authorization": f"Bearer {session_id}"}
+    response = requests.get(f"{BASE_URL}{endpoint}", headers=headers)
+    response.raise_for_status()
+    return response.json()
