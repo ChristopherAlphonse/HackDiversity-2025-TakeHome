@@ -27,3 +27,11 @@ def fetch_routes(session_id, endpoint):
 
 def filter_accessible_routes(routes):
     return [route for route in routes if route.get("accessible")]
+
+
+def sort_routes_by_distance(routes):
+    for i in range(len(routes)):
+        for j in range(0, len(routes) - i - 1):
+            if routes[j]["distance"] > routes[j + 1]["distance"]:
+                routes[j], routes[j + 1] = routes[j + 1], routes[j]
+    return routes
