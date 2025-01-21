@@ -1,0 +1,6 @@
+BASE_URL = "https://hackdiversity.xyz/api"
+SESSION_ENDPOINT = "/start-session"
+ROUTES_ENDPOINT = "/navigation/routes"
+SORTED_ROUTES_ENDPOINT = "/navigation/sorted_routes"
+TEST_MOCK_ENDPOINT = "/test/mockRoutes"
+TEST_SUBMIT_ENDPOINT = "/test/submit-sorted-routes"
