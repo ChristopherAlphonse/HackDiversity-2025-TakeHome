@@ -23,3 +23,7 @@ def fetch_routes(session_id, endpoint):
     response = requests.get(f"{BASE_URL}{endpoint}", headers=headers)
     response.raise_for_status()
     return response.json()
+
+
+def filter_accessible_routes(routes):
+    return [route for route in routes if route.get("accessible")]
