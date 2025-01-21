@@ -1,6 +1,18 @@
+import requests
+
 BASE_URL = "https://hackdiversity.xyz/api"
 SESSION_ENDPOINT = "/start-session"
 ROUTES_ENDPOINT = "/navigation/routes"
 SORTED_ROUTES_ENDPOINT = "/navigation/sorted_routes"
 TEST_MOCK_ENDPOINT = "/test/mockRoutes"
 TEST_SUBMIT_ENDPOINT = "/test/submit-sorted-routes"
+
+
+def start_session(first_name, last_name):
+    response = requests.post(
+        f"{BASE_URL} {SESSION_ENDPOINT}",
+        json={"firstName": first_name, "lastName": last_name}
+    )
+    response.raise_for_status()
+    return response.json().get("session_id")
+    # expected return of "session_id": "uuid string"
