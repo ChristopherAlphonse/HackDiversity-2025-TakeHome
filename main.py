@@ -35,3 +35,25 @@ def sort_routes_by_distance(routes):
             if routes[j]["distance"] > routes[j + 1]["distance"]:
                 routes[j], routes[j + 1] = routes[j + 1], routes[j]
     return routes
+
+
+def submit_routes(session_id, endpoint, sorted_routes):
+    headers = {"Authorization": f"Bearer {session_id}"}
+    response = requests.post(
+        f"{BASE_URL}{endpoint}", json=sorted_routes, headers=headers)
+    response.raise_for_status()
+    return response.json()
+
+
+def main():
+
+    session_id = start_session("Christopher", "Alphonse")
+    routes = fetch_routes(session_id, ROUTES_ENDPOINT)
+    accessible_routes = filter_accessible_routes(routes)
+    sorted_routes = sort_routes_by_distance(accessible_routes)
+    result = submit_routes(session_id, SORTED_ROUTES_ENDPOINT, sorted_routes)
+    print("Submission Result:", result)
+
+
+if __name__ == "__main__":
+    main()
